@@ -3,6 +3,7 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  TF_LOG: DEBUG
 
 jobs:
   test:
