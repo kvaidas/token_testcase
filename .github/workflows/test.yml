@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - run: |
+          terraform init
+          terraform plan -var=token=${GITHUB_TOKEN}
+          terraform apply -var=token=${GITHUB_TOKEN} -auto-approve
